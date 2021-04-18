@@ -1,0 +1,11 @@
+[package]
+authors = ["Dorin Lazăr <dorin.lazar@gmail.com>"]
+edition = "2018"
+name = "poddld"
+version = "0.1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = {version = "0.11.3", features = ["blocking"]}
+RustyXML = {version = "0.3.0"}
