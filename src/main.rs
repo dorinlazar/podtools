@@ -1,7 +1,11 @@
 use std::env;
-use std::str;
 extern crate reqwest;
 use xml::{Event, Parser};
+
+fn download_file(url: &String) {
+  let filename = url.rsplit('/').next().unwrap();
+  println!("fetching: {:?} into {:?}", url, filename);
+}
 
 fn main() {
   println!("Podcast downloader © 2021 Dorin Lazăr");
@@ -17,14 +21,19 @@ fn main() {
     .text()
     .expect("Error big");
 
-  println!("Feed data: {}", feed);
-
   let mut p = Parser::new();
   p.feed_str(&feed);
-  let search = ("url", None);
   for event in p {
     match event.unwrap() {
-      Event::ElementStart(tag) => println!("start: {} {:?}", tag.name, tag.attributes[]),
+      Event::ElementStart(tag) => {
+        if tag.name == "enclosure" {
+          let key: (String, Option<String>) = ("url".to_string(), None);
+          let url = tag.attributes.get(&key);
+          if url != None {
+            download_file(url.unwrap());
+          }
+        }
+      }
       _ => (),
     }
   }
