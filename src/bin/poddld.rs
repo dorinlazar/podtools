@@ -1,6 +1,7 @@
 use std::env;
 extern crate reqwest;
 use xml::{Event, Parser};
+use curl::multi;
 
 fn download_file(url: &String) {
   let filename = url.rsplit('/').next().unwrap();

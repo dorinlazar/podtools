@@ -13,6 +13,7 @@ name = "progresstest"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-reqwest = {version = "0.11.3", features = ["blocking"]}
-RustyXML = {version = "0.3.0"}
-indicatif = {version = "0.15.0" }
+reqwest = { version = "0.11.3", features = ["blocking"] }
+RustyXML = { version = "0.3.0"}
+indicatif = { version = "0.16.0" }
+curl = { version= "0.4.36" }
